@@ -1,0 +1,101 @@
+AC remote Project
+
+
+* Nodemcu Client
+** States (state machine)
+*** Ac powered
+*** Room powered
+*** Room closed
+*** At Night time
+*** Manual mode active
+*** Desired Temperature
+*** 
+
+
+
+
+States are synced with Server
+---- unsigned char numbers to characters arduino
+
+
+
+Fan Speed
+
+<if First 30 minutes>
+	Highest
+<else if Night time:True>
+	Auto
+<else>
+	Medium
+
+
+Manual Mode 
+idTemp
+0 24   
+1 23   
+2 22   
+3 21   
+4 20   
+5 19   
+6 18   
+7 17   
+8 16   
+
+
+** WHEN STATES GET TO CHANGE
+*** Ac powered
+	On: when received from the Server:
+		Room No.   Subject  Directive
+		0000 0001 0000 0001 0000 0001
+	Off:
+		0000 0001 0000 0001 0000 0000
+*** Room powered
+	On: when received from the Server:
+		Room No.   Subject  Directive
+		0000 0001 0000 0000 0000 0001
+	Off:
+		0000 0001 0000 0000 0000 0000
+
+*** Room closed
+	On/Off based on the Hall Sensors System
+	
+*** At Night time
+	Multiple Online APIs
+
+
+*** Manual mode active
+	ADC0 analog signal significant changes
+	
+*** Desired Temperature
+	the value at the moment
+
+
+** PROCEDURES THAT HAPPEN
+*** Ac powered
+	Stay On
+	Stay Off
+	On->Off
+	Off->On
+*** Room powered
+	Stay On
+	Stay Off
+	On->Off
+	Off->On
+*** Room closed
+	Stay On
+	Stay Off
+	On->Off
+	Off->On
+*** At Night time
+	Stay On
+	Stay Off
+	On->Off
+	Off->On
+*** Manual mode active
+	Stay On
+	Stay Off
+	On->Off
+	Off->On
+*** Desired Temperature
+	
+	
